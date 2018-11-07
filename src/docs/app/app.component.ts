@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ButtonComponent } from '@collab-ui/angular';
 
 @Component({
   selector: 'docs-root',

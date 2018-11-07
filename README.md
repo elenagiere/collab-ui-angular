@@ -29,13 +29,13 @@ or
 Import the components that you would like to use in the NgModule and declare them in the "imports" using the `forRoot()` function.
 
 ``` ts
-import ButtonModule from '@collab-ui/angular/lib/button';
+import BadgeModule from '@collab-ui/angular/lib/badge';
 // or
-import { ButtonModule } from '@collab-ui/angular';
+import { BadgeModule } from '@collab-ui/angular';
 
 @NgModule({
   imports: [
-    ButtonModule.forRoot()
+    BadgeModule.forRoot()
   ]
 })
 ```
@@ -43,9 +43,9 @@ import { ButtonModule } from '@collab-ui/angular';
 Then import the components into the components where you will use them.
 
 ``` ts
-import ButtonComponent from '@collab-ui/angular/lib/button';
+import BadgeComponent from '@collab-ui/angular/lib/badge';
 //or
-import { ButtonComponent } from '@collab-ui/angular';
+import { BadgeComponent } from '@collab-ui/angular';
 ```
 
 ## Contribute

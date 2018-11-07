@@ -223,3 +223,15 @@ or in case of multiple issues:
 ### Angular TypeScript
 
 [Adhere to the Code Guide](https://angular.io/guide/styleguide)
+
+### Running this project locally
+* You need to run `$ yarn watch:lib` in one tab within terminal
+* Then in another tab, `$ yarn serve` which will serve it at localhost:4200
+
+### Using Angular CLI with this Project
+###### When adding a new Module or Component to the src/lib directory...
+* `ng g module <componentName> --project=@collab-ui/angular`
+* `ng g component <componentName> --project=@collab-ui/angular`
+* You need to create an `index.ts` file under the new component directory (use existing index.ts as a guide)
+* Don't forget to add the new component to `src/lib/public_api.ts`
+* Ensure that within `src/docs/app/applmodule.ts`, you import the newly created module if you want to test it within Playground
