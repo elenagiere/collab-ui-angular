@@ -9,7 +9,7 @@
     "build:lib": "ng build",
     "test": "ng test --project=@collab-ui/angular",
     "test:docs": "ng test",
-    "lint": "ng lint",
+    "lint": "ng lint --project=@collab-ui/angular",
     "e2e": "ng e2e",
     "serve": "ng serve --project=docs --open",
     "watch:lib": "ng build @collab-ui/angular --watch"
