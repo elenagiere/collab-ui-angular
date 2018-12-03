@@ -180,72 +180,52 @@ export class IconComponent implements OnInit {
 }
 
 /**
-* @name Default Icons
-* @description Default state of icon.
-
-* @component icon
-* @section default
-
-@ts
-
-<h3>Icon</h3>
+ * @component icons
+ * @section default
+ * @angular
+ *
 <div>
     <cui-icon name='accessories_16'></cui-icon>
     <cui-icon name='accessories_20'></cui-icon>
     <cui-icon name='accessories_36'></cui-icon>
     <cui-icon name='accessories_56'></cui-icon>
 </div>
-<h3>Icon with Color</h3>
+ */
+
+/**
+ * @component icons
+ * @section color
+ * @angular
+ *
 <div>
     <cui-icon name='accessories_16' color="blue"></cui-icon>
     <cui-icon name='accessories_20' color="cyan"></cui-icon>
     <cui-icon name='accessories_36' color="purple"></cui-icon>
     <cui-icon name='accessories_56' color="red"></cui-icon>
 </div>
-<h3>Icon with onClick</h3>
+ */
+
+/**
+ * @component icons
+ * @section white
+ * @angular
+ *
+<div className='row'>
+  <div [ngStyle]="{ backgroundColor: 'black', padding: '5px', width: 'fit-content' }">
+    <cui-icon name='clear-active_24' ariaLabel='Clear' type='white' (click)="onClick()"></cui-icon>
+  </div>
+</div>
+ */
+
+/**
+ * @component icons
+ * @section click
+ * @angular
+ *
 <div>
     <cui-icon name='accessories_16' color='blue' ariaLabel='Accessories' (click)="onClick()"></cui-icon>
     <cui-icon name='accessories_20' color='blue' ariaLabel='Accessories' (click)="onClick()"></cui-icon>
     <cui-icon name='accessories_36' color='blue' ariaLabel='Accessories' (click)="onClick()"></cui-icon>
     <cui-icon name='accessories_56' color='blue' ariaLabel='Accessories' (click)="onClick()"></cui-icon>
 </div>
-<h3>Icon with Click Type</h3>
-<div>
-    <div className='row'>
-      <div>Default</div>
-      <div style="padding: '5px'">
-        <cui-icon name='clear-active_24' ariaLabel='Clear' (click)="onClick()"></cui-icon>
-      </div>
-    </div>
-    <div className='row'>
-      <div>Type(white)</div>
-      <div [ngStyle]="{ backgroundColor: 'black', padding: '5px', width: 'fit-content' }">
-        <cui-icon name='clear-active_24' ariaLabel='Clear' type='white' (click)="onClick()"></cui-icon>
-      </div>
-    </div>
-</div>
-<h3>Icon with size prop</h3>
-<p>Icon name="icon-info" with size prop 24</p>
-<p>equals name="icon-info_24"</p>
-<cui-icon name='icon-info' size=24 color='blue' ariaLabel='Accessories' type='white'></cui-icon>
-
-<h3>Icon with fontSize</h3>
-<p>name="icon-info_16" with fontSize overriding size with 32</p>
-<p>equals name="icon-info_32"</p>
-<cui-icon name='icon-info_16' fontSize=32 color='blue' ariaLabel='Accessories' type='white'></cui-icon>
-
-<h3>Icon with every prop</h3>
-<cui-icon
-    ariaLabel='ariaLabel'
-    buttonClassName='button-class-name'
-    color='purple'
-    className='class-name'
-    description='description'
-    name='accessories_56'
-    (click)="onClick()"
-    size=24
-    fontSize=36
-    title='title'
-    type=''>
-</cui-icon>
-**/
+ */
