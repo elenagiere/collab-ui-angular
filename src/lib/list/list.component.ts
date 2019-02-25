@@ -105,7 +105,7 @@ export class ListComponent implements OnInit, OnChanges, AfterContentInit {
 
  /**
  * @component list
- * @section tab type
+ * @section tabType type
  * @angular
  *
 <div class="medium-4 columns">
@@ -122,11 +122,11 @@ export class ListComponent implements OnInit, OnChanges, AfterContentInit {
 
   /**
  * @component list
- * @section tab
+ * @section type
  * @angular
  *
 <div class="medium-4 columns">
-  <cui-list" tab="small">
+  <cui-list" type="small">
         <div cui-list-item label='List Item A'></div>
         <div cui-list-item label='List Item B'></div>
     </cui-list>
@@ -134,11 +134,11 @@ export class ListComponent implements OnInit, OnChanges, AfterContentInit {
         <div cui-list-item label='List Item A'></div>
         <div cui-list-item label='List Item B'></div>
     </cui-list>
-    <cui-list" tab="large">
+    <cui-list" type="large">
         <div cui-list-item label='List Item A'></div>
         <div cui-list-item label='List Item B'></div>
     </cui-list>
-    <cui-list" tab="xlarge">
+    <cui-list" type="xlarge">
         <div cui-list-item label='List Item A'></div>
         <div cui-list-item label='List Item B'></div>
     </cui-list>
