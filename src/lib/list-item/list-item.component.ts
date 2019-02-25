@@ -31,7 +31,6 @@ export class ListItemComponent implements OnInit {
   /** @option external link associated input | '' */
   @HostBinding('attr.href') @Input() link = '';
   /** @option ListItem ref name | 'navLink' */
-  // @Input() role = 'listItem';
   @HostBinding('attr.role') @Input() role = 'listItem';
   /** @option Prop that controls whether to show separator or not | false */
   @Input() separator = false;
@@ -39,8 +38,6 @@ export class ListItemComponent implements OnInit {
   @Input() title = '';
   /** @option ListItem size | '' */
   @Input() type = '';
-  /** @option ListItem value for OnSelect value | '' */
-  @Input() value = '';
 
   @Output() selected: EventEmitter<any> = new EventEmitter();
 
@@ -67,17 +64,102 @@ export class ListItemComponent implements OnInit {
       throw new Error(`cui-list-item: ListItem type option must be one of the following:
         small, large, xlarge, space, header, 36, 52, 60`);
     }
-    if (this.value && !this.isValueOptionValid()) {
-      throw new Error(`cui-list-item: ListItem value option must be one of the following types:
-        string, number, object, array`);
-    }
   }
 
   private isTypeOptionValid = () => (
     ['', 'small', 'large', 'xlarge', 'space', 'header', 36, 52, 60].includes(this.type)
   )
-
-  private isValueOptionValid = () => (
-    ['string', 'number', 'object', 'array'].includes(typeof this.value)
-  )
 }
+
+/**
+ * @component list-item
+ * @section default
+ * @angular
+ *
+  <div class="medium-4 columns">
+    <cui-list>
+      <div cui-list-item label='List Item A'></div>
+      <a cui-list-item label='List Item B' link='javascript:void(0)'></a>
+    </cui-list>
+  </div>
+ */
+
+/**
+ * @component list-item
+ * @section disabled
+ * @angular
+ *
+  <div class="medium-4 columns">
+    <cui-list>
+      <div cui-list-item label='List Item A'></div>
+      <div cui-list-item label='List Item B' [disabled]=true></div>
+    </cui-list>
+  </div>
+ */
+
+/**
+ * @component list-item
+ * @section IsReadOnly
+ * @angular
+ *
+  <div class="medium-4 columns">
+    <cui-list>
+      <div cui-list-item label='List Item A'></div>
+      <div cui-list-item label='List Item B' [isReadOnly]=true></div>
+    </cui-list>
+  </div>
+ */
+
+ /**
+ * @component list-item
+ * @section link
+ * @angular
+ *
+  <div class="medium-4 columns">
+    <cui-list>
+      <div cui-list-item label='List Item A'></div>
+      <div cui-list-item label='List Item B' link='https://www.google.com'></div>
+    </cui-list>
+  </div>
+ */
+
+/**
+ * @component list-item
+ * @section separator
+ * @angular
+ *
+  <div class="medium-4 columns">
+    <cui-list>
+      <div cui-list-item label='List Item A'></div>
+      <div cui-list-item label='List Item B' [separator]=true></div>
+    </cui-list>
+  </div>
+ */
+
+/**
+ * @component list-item
+ * @section title
+ * @angular
+ *
+  <div class="medium-4 columns">
+    <cui-list>
+      <div cui-list-item label='List Item A'></div>
+      <div cui-list-item label='List Item B' title='my custom title'></div>
+    </cui-list>
+  </div>
+ */
+
+/**
+ * @component list-item
+ * @section type
+ * @angular
+ *
+  <div class="medium-4 columns">
+    <cui-list>
+      <div cui-list-item label='List Item A' type='small'></div>
+      <div cui-list-item label='List Item B'></div>
+      <div cui-list-item label='List Item B' type='large'></div>
+      <div cui-list-item label='List Item B' type='xlarge'></div>
+    </cui-list>
+  </div>
+ */

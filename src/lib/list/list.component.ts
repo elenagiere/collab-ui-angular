@@ -16,20 +16,12 @@ export class ListComponent implements OnInit, OnChanges, AfterContentInit {
 
   constructor(private cd: ChangeDetectorRef) {}
 
-  /** @option Active prop to help determine styles | false */
-  @Input() active = null;
   /** @option class optional css class name | '' */
   @Input() class = '';
-  /** @option Sets first List item to have focus | true */
-  @Input() focusFirst = true;
   /** @option Optional ID value of List | null */
   @HostBinding('id') @Input() id: string = uniqueId('cui-list-');
-  /** @option Optional prop to know if multiple children can be active | false */
-  @Input() isMulti = false;
   /** @option Optional tabType prop type to manually set child role | 'listItem' */
   @Input() itemRole = 'listItem';
-  /** @option Callback function invoked by user selecting an interactive item within List | null */
-  @Input() onSelect = '';
   /** @option Sets the ARIA role for the Nav, in the context of a TabContainer | 'list' */
   @HostBinding('attr.role') @Input() role: string = 'list';
   /** @option Sets the orientation of the List | 'vertical' */
@@ -97,3 +89,71 @@ export class ListComponent implements OnInit, OnChanges, AfterContentInit {
     ['small', 'large', 'space', 'xlarge'].includes(this.type)
   )
 }
+
+/**
+ * @component list
+ * @section default
+ * @angular
+ *
+<div class="medium-4 columns">
+  <cui-list">
+        <div cui-list-item label='List Item A'></div>
+        <div cui-list-item label='List Item B'></div>
+    </cui-list>
+</div>
+ */
+
+ /**
+ * @component list
+ * @section tab type
+ * @angular
+ *
+<div class="medium-4 columns">
+  <cui-list" tabType="vertical">
+        <div cui-list-item label='List Item A'></div>
+        <div cui-list-item label='List Item B'></div>
+    </cui-list>
+    <cui-list" tabType="horizontal">
+        <div cui-list-item label='List Item A'></div>
+        <div cui-list-item label='List Item B'></div>
+    </cui-list>
+</div>
+ */
+
+  /**
+ * @component list
+ * @section tab
+ * @angular
+ *
+<div class="medium-4 columns">
+  <cui-list" tab="small">
+        <div cui-list-item label='List Item A'></div>
+        <div cui-list-item label='List Item B'></div>
+    </cui-list>
+    <cui-list">
+        <div cui-list-item label='List Item A'></div>
+        <div cui-list-item label='List Item B'></div>
+    </cui-list>
+    <cui-list" tab="large">
+        <div cui-list-item label='List Item A'></div>
+        <div cui-list-item label='List Item B'></div>
+    </cui-list>
+    <cui-list" tab="xlarge">
+        <div cui-list-item label='List Item A'></div>
+        <div cui-list-item label='List Item B'></div>
+    </cui-list>
+</div>
+ */
+
+   /**
+ * @component list
+ * @section wrap
+ * @angular
+ *
+<div class="medium-4 columns">
+  <cui-list" [wrap]=true>
+        <div cui-list-item label='List Item A'></div>
+        <div cui-list-item label='List Item B'></div>
+    </cui-list>
+</div>
+ */
