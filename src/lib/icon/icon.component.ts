@@ -16,22 +16,22 @@ const colors = require('@collab-ui/core/data/colors.json');
   selector: 'cui-icon',
   template: `
   <i
-  *ngIf="!isClickable"
-  class={{classes}}
-  [style.color]="getColor()"
-  aria-labelledby="getAriaLabelledBy()"
-  aria-label="getAriaLabel()">
-</i>
-
-<button
-  *ngIf="isClickable"
-  class={{buttonClasses}}
-  aria-labelledby="getAriaLabelledBy()"
-  aria-label="getAriaLabel()">
-  <i  class={{classes}}
-      [style.color]="getColor()">
+    *ngIf="!isClickable"
+    class={{classes}}
+    [style.color]="getColor()"
+    [attr.aria-labelledby]="ariaLabelledBy"
+    [attr.aria-label]="ariaLabel">
   </i>
-</button>
+
+  <button
+    *ngIf="isClickable"
+    class={{buttonClasses}}
+    [attr.aria-labelledby]="ariaLabelledBy"
+    [attr.aria-label]="ariaLabel">
+    <i  class={{classes}}
+        [style.color]="getColor()">
+    </i>
+  </button>
 `,
   styles: [],
   encapsulation: ViewEncapsulation.None,
@@ -117,7 +117,7 @@ export class IconComponent implements OnInit {
   }
 
   private getHexFromJSON = (colorName) => {
-    for (const c of (<any>colors).default) {
+    for (const c of (<any>colors)) {
       const variation = find(c.variations, ['variable', colorName]);
 
       if (variation) { return this.getColorSpec(variation); }
@@ -144,7 +144,7 @@ export class IconComponent implements OnInit {
     return this.getHexFromJSON(this.formatColor());
   }
 
-  public getAriaLabelledBy = () => {
+  public get ariaLabelledBy (): string {
     const { ariaLabel, title, description, titleId, descId } = this;
 
     if (!ariaLabel) {

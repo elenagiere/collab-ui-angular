@@ -9,6 +9,7 @@ export * from './list';
 export * from './list-item';
 export * from './list-item-section';
 export * from './spinner';
+export * from './select-option';
 export * from './input';
 export * from './label';
 export * from './input-error';

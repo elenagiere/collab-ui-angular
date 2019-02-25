@@ -9,6 +9,7 @@ import { ListModule } from '@collab-ui/angular';
 import { ListItemModule } from '@collab-ui/angular';
 import { ListItemSectionModule } from '@collab-ui/angular';
 import { SpinnerModule } from '@collab-ui/angular';
+import { SelectOptionModule } from '@collab-ui/angular';
 import { InputModule } from '@collab-ui/angular';
 import { InputErrorModule } from '@collab-ui/angular';
 import { LabelModule } from '@collab-ui/angular';
@@ -53,7 +54,9 @@ import { PlaygroundComponent } from './playground/playground.component';
     ModalFooterModule,
     ModalHeaderModule,
     ModalModule,
+    ModalFooterModule,
     SpinnerModule,
+    SelectOptionModule
   ],
   bootstrap: [ AppComponent ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
