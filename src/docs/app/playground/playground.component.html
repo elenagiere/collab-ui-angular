@@ -1,17 +1,10 @@
 
-  <cui-input
-    [(ngModel)]="dataModel"
-    inputSize="small-5"
-    label="Error Label with onMouseDown"
-    email
-    required
-    minlength="8"
-    maxlength="12"
-    [errorObj]="errorObj"
-    name="name"
-  >
-  </cui-input>
-
+    <button cui-button (click)="showAlert()" aria-label='Click to Open'>
+      Show Alert
+    </button>
+    <button cui-button (click)="hideAlert()" aria-label='Click to Hide'>
+      Hide Alert
+    </button>
 
   <!-- {{dataModel}} -->
 

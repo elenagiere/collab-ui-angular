@@ -2,8 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
-import { AlertComponent } from '@collab-ui/angular';
-import { AlertContainerComponent } from '@collab-ui/angular';
+import { AlertModule } from '@collab-ui/angular';
 import { AlertService } from '@collab-ui/angular';
 import { BadgeModule } from '@collab-ui/angular';
 import { IconModule } from '@collab-ui/angular';
@@ -33,34 +32,32 @@ import { PlaygroundComponent } from './playground/playground.component';
   declarations: [
     AppComponent,
     PlaygroundComponent,
-    AlertComponent,
-    AlertContainerComponent,
   ],
   imports: [
     BrowserModule,
     OverlayModule,
     PortalModule,
     AppRoutingModule,
+    AlertModule,
     BadgeModule,
+    ButtonModule,
+    FormsModule,
     IconModule,
-    ListModule,
+    InputErrorModule,
+    InputModule,
+    LabelModule,
     ListItemModule,
     ListItemSectionModule,
-    SpinnerModule,
-    InputModule,
-    InputErrorModule,
-    LabelModule,
-    FormsModule,
-    ButtonModule,
+    ListModule,
     LoadingModule,
-    ModalModule, 
     ModalBodyModule,
+    ModalFooterModule,
     ModalHeaderModule,
-    ModalFooterModule
+    ModalModule,
+    SpinnerModule,
   ],
-  providers: [AlertService],
-  bootstrap: [AppComponent],
+  bootstrap: [ AppComponent ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  entryComponents: [AlertContainerComponent],
+  providers: [ AlertService ]
 })
 export class AppModule { }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertService } from '@collab-ui/angular';
 
 @Component({
   selector: 'docs-playground',
@@ -6,14 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./playground.component.scss']
 })
 export class PlaygroundComponent implements OnInit {
+  key: string;
+  constructor(private alertService: AlertService) {}
 
-  dataModel: string = 'ngModel Test';
+  showAlert() {
+    this.key = this.alertService.info('Alert', 'Who\'s awesome?  You are!');
+  }
 
-  errorObj = {
-    'required': 'This field is required',
-    'minlength': 'This field should be more than 8 chars',
-    'maxlength': 'This field cant be more than 10 chars',
-    'email': "Not a valid email"
+  hideAlert() {
+    this.alertService.hide(this.key);
   }
 
 
