@@ -5,7 +5,7 @@ import {
   OverlayRef
 } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { ModalServiceService } from './modal-service.service';
+import { ModalService } from './modal.service';
 
 export type SizeType = 'large' | 'medium' | 'default' | 'small' | 'full' | 'dialog';
 
@@ -23,7 +23,7 @@ export type SizeType = 'large' | 'medium' | 'default' | 'small' | 'full' | 'dial
     </ng-template>
   `,
   styles: ['.overlayerFix{ top:0; }'],
-  providers: [ ModalServiceService ]
+  providers: [ ModalService ]
 })
 export class ModalComponent implements OnInit {
 
@@ -48,7 +48,7 @@ export class ModalComponent implements OnInit {
   constructor(
     private overlay: Overlay,
     public viewContainerRef: ViewContainerRef,
-    private modalServiceService: ModalServiceService
+    private modalService: ModalService
   ) {}
 
   get classes() {
@@ -80,22 +80,22 @@ export class ModalComponent implements OnInit {
       });
     }
 
-    this.modalServiceService.isModalOpened$.subscribe(isOpen => {
+    this.modalService.isModalOpened$.subscribe(isOpen => {
       if (isOpen) {
         this.showContent();
       } else {
         this.dismissContent();
       }
     });
-    this.modalServiceService.setModalStatus(this.show);
+    this.modalService.setModalStatus(this.show);
   }
 
   public showModal = () => {
-    this.modalServiceService.setModalStatus(true);
+    this.modalService.setModalStatus(true);
   }
 
   public closeModal = () => {
-    this.modalServiceService.setModalStatus(false);
+    this.modalService.setModalStatus(false);
   }
 
   private showContent = () => {

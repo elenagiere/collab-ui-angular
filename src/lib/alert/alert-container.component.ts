@@ -14,7 +14,19 @@ import { Subject } from 'rxjs';
  */
 @Component({
   selector: 'cui-alert-container',
-  templateUrl: 'alert-container.component.html',
+  template: `
+    <ng-container *ngFor="let alert of alertList">
+      <cui-alert
+        [key]="alert.key"
+        [ariaLabel]="alert.ariaLabel"
+        [type]="alert.type"
+        [title]="alert.title"
+        [message]="alert.message"
+        [closable]="alert.closable"
+        (dismissed)="removeAlert($event)"
+      ></cui-alert>
+    </ng-container>
+  `,
 })
 
 export class AlertContainerComponent implements OnDestroy {

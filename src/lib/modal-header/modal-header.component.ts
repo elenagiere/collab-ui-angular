@@ -1,21 +1,19 @@
 import { Component, OnInit, Input, OnDestroy, HostBinding } from '@angular/core';
-import {ModalServiceService} from '../modal/modal-service.service';
+import { ModalService } from '../modal/modal.service';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'cui-modal-header',
   template: `
-      <ng-content></ng-content>
-      <span *ngIf="hideNative" class='cui-modal__title'>{{ headerLabel }}</span>
-      <span *ngIf="hideNative && message" class='cui-modal__message'>{{ message }}</span>
-      <button *ngIf="showCloseButton" cui-button aria-label='Close Modal' (click)="closeModal()"
-      class='cui-close cui-modal__close'></button>
+    <ng-content></ng-content>
+    <span *ngIf="hideNative" class="cui-modal__title">{{ headerLabel }}</span>
+    <span *ngIf="hideNative && message" class="cui-modal__message">{{ message }}</span>
+    <button *ngIf="showCloseButton" cui-button aria-label="Close Modal" (click)="closeModal()" class="cui-close cui-modal__close"></button>
   `,
   styles: [],
-  providers: []
+  providers: [],
 })
 export class ModalHeaderComponent implements OnInit, OnDestroy {
-
   /** @option Optional css class string | '' */
   @Input() public class: string = '';
   /** ModalHeader label text | '' */
@@ -26,31 +24,28 @@ export class ModalHeaderComponent implements OnInit, OnDestroy {
   @Input() public showCloseButton: boolean = true;
 
   @HostBinding('class') get className(): string {
-    return 'cui-modal__header' +
-    `${(this.class && ` ${this.class}`) || ''}` +
-    ``;
+    return 'cui-modal__header' + `${(this.class && ` ${this.class}`) || ''}` + ``;
   }
 
   private subscription: Subscription;
   public hideNative: boolean = true;
 
-  constructor(
-    private modalServiceService: ModalServiceService
-  ) { }
+  constructor(private modalService: ModalService) {}
 
   ngOnInit() {
-    this.hideNative = (this.headerLabel !== '');
+    this.hideNative = this.headerLabel !== '';
   }
 
   ngOnDestroy() {
     // prevent memory leak when component destroyed
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   closeModal = () => {
-    this.modalServiceService.setModalStatus(false);
+    this.modalService.setModalStatus(false);
   }
-
 }
 
 /**
@@ -104,4 +99,3 @@ export class ModalHeaderComponent implements OnInit, OnDestroy {
   <cui-modal-header [showCloseButton]='false'></cui-modal-header>
 </cui-modal>
  */
-

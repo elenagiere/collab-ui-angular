@@ -3,7 +3,7 @@ import {
   EventEmitter,
   HostBinding,
   Input,
-  Output,
+  Output
 } from '@angular/core';
 
 /**
@@ -11,9 +11,19 @@ import {
  */
 @Component({
   selector: 'cui-alert',
-  templateUrl: 'alert.component.html',
+  template: `
+    <div class="cui-alert__icon"></div>
+    <div class="cui-alert__content">
+      <div class="cui-alert__title">{{ title }}</div>
+      <div class="cui-alert__message">{{ message }}</div>
+    </div>
+    <div class="cui-alert__button" *ngIf="closable">
+      <button cui-button #closeButton [attr.aria-label]="ariaLabel" [circle]="true" size="44" (click)="dismiss()">
+        <cui-icon name="cancel_16"></cui-icon>
+      </button>
+    </div>
+  `,
 })
-
 export class AlertComponent {
   @Input() private key: string;
   @Input() private type: string;
