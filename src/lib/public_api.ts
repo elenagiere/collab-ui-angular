@@ -8,6 +8,7 @@ export * from './icon';
 export * from './list';
 export * from './list-item';
 export * from './list-item-section';
+export * from './select';
 export * from './spinner';
 export * from './select-option';
 export * from './input';
