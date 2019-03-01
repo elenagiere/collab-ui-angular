@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, HostBinding, HostListener, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, HostBinding, HostListener, ElementRef, Output, EventEmitter } from '@angular/core';
 import { uniqueId } from 'lodash';
 import { EmitterService } from './emitter.service';
 
@@ -56,6 +56,8 @@ export class ListItemComponent implements OnInit {
   /** @option ListItem size | '' */
   @Input() type = '';
 
+  @Output() select = new EventEmitter();
+
   @HostBinding('attr.href') get myHref(): string {
     return (this.link && this._getHostElement().localName === 'a') ? this.link : null;
   }
@@ -77,6 +79,7 @@ export class ListItemComponent implements OnInit {
       event.stopImmediatePropagation();
     } else {
       this.emitter.next(this.id);
+      this.select.emit();
     }
    }
 

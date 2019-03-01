@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, HostBinding,
-  QueryList, ContentChildren, ChangeDetectorRef, AfterContentInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, HostBinding, QueryList, ContentChildren,
+  ChangeDetectorRef, AfterContentInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { uniqueId } from 'lodash';
 import { ListItemComponent } from '../list-item';
 import { EmitterService } from '../list-item/emitter.service';
@@ -28,6 +28,8 @@ export class ListComponent implements OnInit, AfterContentInit, OnDestroy {
   @HostBinding('id') @Input() id: string = uniqueId('cui-list-');
   /** @option Optional tabType prop type to manually set child role | 'listItem' */
   @Input() itemRole = 'listItem';
+  /** @option Callback function invoked by user selecting an interactive item within list | null */
+  @Output() select = new EventEmitter();
   /** @option Sets the ARIA role for the Nav, in the context of a TabContainer | 'list' */
   @HostBinding('attr.role') @Input() role: string = 'list';
   /** @option Sets the orientation of the List | 'vertical' */
@@ -63,6 +65,7 @@ export class ListComponent implements OnInit, AfterContentInit, OnDestroy {
       if (this.type) { listItem.type = this.type; }
       listItem.role = this.itemRole;
       listItem.id = uniqueId(`${this.id}__list-item-`);
+      listItem.select.subscribe(() => this.setSelected()); // context function
     });
 
     this.cd.detectChanges();
@@ -78,6 +81,12 @@ export class ListComponent implements OnInit, AfterContentInit, OnDestroy {
     });
 
     this.cd.detectChanges();
+  }
+
+  setSelected = () => {
+    if (this.select) {
+      return this.select.emit();
+    }
   }
 
   private isTabTypeOptionValid = () => (
