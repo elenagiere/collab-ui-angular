@@ -2,21 +2,20 @@ import { Component, OnInit, Input, HostBinding, QueryList, ContentChildren,
   ChangeDetectorRef, AfterContentInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { uniqueId } from 'lodash';
 import { ListItemComponent } from '../list-item';
-import { EmitterService } from '../list-item/emitter.service';
+import { ListService } from './list.service';
 
 @Component({
   selector: 'cui-list',
   template: `
     <ng-content></ng-content>
     `,
-  providers: [EmitterService],
   styles: []
 })
 export class ListComponent implements OnInit, AfterContentInit, OnDestroy {
 
   private Subscription;
 
-  constructor(private cd: ChangeDetectorRef, private emitter: EmitterService) {
+  constructor(private cd: ChangeDetectorRef, private emitter: ListService) {
     this.Subscription = this.emitter.subscribe(listItemId => {
       this.updateSelected(listItemId);
     });

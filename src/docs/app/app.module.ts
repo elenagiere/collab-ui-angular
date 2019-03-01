@@ -28,6 +28,7 @@ import { ModalFooterModule } from '@collab-ui/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PlaygroundComponent } from './playground/playground.component';
+import { ListService } from '@collab-ui/angular';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,6 @@ import { PlaygroundComponent } from './playground/playground.component';
   ],
   bootstrap: [ AppComponent ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  providers: [ AlertService ]
+  providers: [ AlertService, ListService ]
 })
 export class AppModule { }

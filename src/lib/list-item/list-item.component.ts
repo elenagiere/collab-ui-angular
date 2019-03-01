@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, HostBinding, HostListener, ElementRef, Output, EventEmitter } from '@angular/core';
 import { uniqueId } from 'lodash';
-import { EmitterService } from './emitter.service';
+import { ListService } from '../list/list.service';
 
 @Component({
   selector: 'a[cui-list-item], div[cui-list-item], div[cui-select-option]',
@@ -31,7 +31,7 @@ export class ListItemComponent implements OnInit {
 
   readonly isSelectOption: boolean = this._hasHostAttributes('cui-select-option');
 
-  constructor(private el: ElementRef, private emitter: EmitterService) { }
+  constructor(private el: ElementRef, private emitter: ListService) { }
 
   /** @option Active prop to help determine styles | false */
   @Input() active = false;
