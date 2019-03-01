@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, Input, AfterViewChecked, HostBinding } from '@angular/core';
 import {
   uniqueId,
 } from 'lodash';
@@ -16,21 +16,19 @@ interface IState {
 @Component({
   selector: 'cui-select',
   template: `
-  <div class="cui-input-group cui-select">
     <div cui-button
         [attr.name]='state.id'
         [id]='state.id'
         (click)='handleToggle()'
-        class={{classes}}
+        class={{buttonClasses}}
         active='state.isOpen'
         type="button"
         >
-          <div className='cui-select__label' id="{{state.id}}__label">
+          <div class='cui-select__label' id="{{state.id}}__label">
               {{currentValue() || defaultValue}}
               <cui-icon name="arrow-down_16"></cui-icon>
           </div>
     </div>
-  </div>
   `,
   styles: []
 })
@@ -44,6 +42,8 @@ export class SelectComponent { // implements AfterViewChecked {
   @Input() public isMulti = false;
   // onSelect
   @Input() public overlayProps: object = {};
+
+  @HostBinding('class') classes = 'cui-input-group cui-select';
 
   public state: IState;
 
@@ -70,7 +70,7 @@ export class SelectComponent { // implements AfterViewChecked {
     }
   }
 
-  public get classes(): string {
+  public get buttonClasses(): string {
     return 'cui-button--input' +
     ' cui-button cui-button--36' +
     `${(this.class && ` ${this.class}`) || ''}`;
