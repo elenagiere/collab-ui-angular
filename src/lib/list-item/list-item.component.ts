@@ -25,7 +25,8 @@ import { EmitterService } from './emitter.service';
           <ng-content></ng-content>
         </ng-template>
       </ng-container>
-  `
+  `,
+  providers: [EmitterService]
 })
 export class ListItemComponent implements OnInit {
 
