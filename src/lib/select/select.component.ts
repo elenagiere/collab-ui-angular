@@ -1,8 +1,6 @@
-import { Component, OnInit, Input, AfterViewChecked, HostBinding } from '@angular/core';
-import {
-  uniqueId,
-} from 'lodash';
-// import { SelectOptionOverlayService } from './select-option-overlay/select-option-overlay.service';
+import { Component, Input, HostBinding} from '@angular/core';
+
+import {uniqueId} from 'lodash';
 
 interface IState {
   isOpen: boolean;
@@ -16,25 +14,38 @@ interface IState {
 @Component({
   selector: 'cui-select',
   template: `
-    <div cui-button
+    <button cui-button
+        cdkOverlayOrigin
+        #trigger="cdkOverlayOrigin"
         [attr.name]='state.id'
+        aria-label="select button"
         [id]='state.id'
-        (click)='handleToggle()'
+        (click)='isOpen = !isOpen'
         class={{buttonClasses}}
-        active='state.isOpen'
+        active='isOpen'
         type="button"
         >
           <div class='cui-select__label' id="{{state.id}}__label">
               {{currentValue() || defaultValue}}
               <cui-icon name="arrow-down_16"></cui-icon>
           </div>
-    </div>
+    </button>
+
+    <ng-template
+      cdkConnectedOverlay
+      [cdkConnectedOverlayOrigin]="trigger"
+      [cdkConnectedOverlayOpen]="isOpen">
+      <cui-list>
+        <ng-content></ng-content>
+      </cui-list>
+    </ng-template>
   `,
   styles: []
 })
-export class SelectComponent { // implements AfterViewChecked {
+export class SelectComponent {
+  isOpen = false;
+  selectedListItem = '';
 
-  // children
   @Input() public class = '';
   @Input() public defaultValue: string = null;
   @Input() public id: string = null;
@@ -47,8 +58,7 @@ export class SelectComponent { // implements AfterViewChecked {
 
   public state: IState;
 
-  // constructor(private previewOptions: SelectOptionOverlayService) {
-    constructor() {
+  constructor() {
     this.state = {
       isOpen: false,
       selected: [],
@@ -75,19 +85,4 @@ export class SelectComponent { // implements AfterViewChecked {
     ' cui-button cui-button--36' +
     `${(this.class && ` ${this.class}`) || ''}`;
   }
-
-  public handleToggle = () => {
-    console.log('select button clicked');
-    // this.previewOptions.open();
-    this.state.isOpen = !this.state.isOpen;
-    // this.state.anchorNode.findDOMNode(this.clickTextField).parentNode
-  }
-
-  // ngAfterViewChecked () {
-  //   // componentDidUpdate react
-  //   return prevState.selected !== this.state.selected
-  //   && this.onSelect
-  //   && this.onSelect(this.state.selected);
-  // }
-
 }

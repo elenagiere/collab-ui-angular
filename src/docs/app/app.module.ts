@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { OverlayModule, Overlay } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { AlertModule, AlertService } from '@collab-ui/angular';
 import { BadgeModule } from '@collab-ui/angular';
@@ -37,7 +36,6 @@ import { ListService } from '@collab-ui/angular';
   ],
   imports: [
     BrowserModule,
-    OverlayModule,
     PortalModule,
     AppRoutingModule,
     AlertModule,
