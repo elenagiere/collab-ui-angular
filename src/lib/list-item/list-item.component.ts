@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, HostBinding, HostListener, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, HostBinding, HostListener, ElementRef,
+  Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { uniqueId } from 'lodash';
 import { ListService } from '../list/list.service';
 
@@ -14,7 +15,7 @@ import { ListService } from '../list/list.service';
             </ng-template>
         </cui-list-item-section>
         <cui-list-item-section key="child-1" position='right'>
-            <cui-icon name="check_20" color="blue"></cui-icon>
+            <cui-icon *ngIf="active" name="check_20" color="blue"></cui-icon>
         </cui-list-item-section>
       </ng-container>
 
@@ -27,7 +28,7 @@ import { ListService } from '../list/list.service';
       </ng-container>
   `
 })
-export class ListItemComponent implements OnInit {
+export class ListItemComponent implements OnInit, AfterViewInit {
 
   readonly isSelectOption: boolean = this._hasHostAttributes('cui-select-option');
 
@@ -44,7 +45,7 @@ export class ListItemComponent implements OnInit {
   /** @option Determines if ListItem is clickable | false */
   @Input() isReadOnly = false;
   /** @option ListItem label text | '' */
-  @Input() label = '';
+  @Input() label = null;
   /** @option external link associated input | '' */
   @Input() link = '';
   /** @option ListItem ref name | 'navLink' */
@@ -78,7 +79,7 @@ export class ListItemComponent implements OnInit {
     if (this.isReadOnly) {
       event.stopImmediatePropagation();
     } else {
-      this.emitter.next(this.id);
+      this.emitter.next({ id: this.id, label: this.label});
       this.select.emit();
     }
    }
@@ -87,6 +88,12 @@ export class ListItemComponent implements OnInit {
     if (this.type && !this.isTypeOptionValid()) {
       throw new Error(`cui-list-item: ListItem type option must be one of the following:
         small, large, xlarge, space, header, 36, 52, 60`);
+    }
+  }
+
+  ngAfterViewInit () {
+    if (!this.label) {
+      throw new Error('cui-list-item: Label property is required');
     }
   }
 

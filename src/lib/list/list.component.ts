@@ -64,7 +64,7 @@ export class ListComponent implements OnInit, AfterContentInit, OnDestroy {
       if (this.type) { listItem.type = this.type; }
       listItem.role = this.itemRole;
       listItem.id = uniqueId(`${this.id}__list-item-`);
-      listItem.select.subscribe(() => this.setSelected()); // context function
+      listItem.select.subscribe(() => this.setSelected());
     });
 
     this.cd.detectChanges();
